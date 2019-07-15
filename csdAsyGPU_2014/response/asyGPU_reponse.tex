@@ -1,0 +1,146 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\title{csdAsyGPU Response}
+
+\begin{document}
+\maketitle
+\section*{Referee 1}
+\begin{enumerate}
+\subsection*{Referee}
+\item  There is little discussion (and no references to) other work in GPU acceleration
+of kinetics; most of the references are to the authors’ past work. In particular,
+even though the authors do mention how this work is relevant to modeling of
+combustion, they do not cite the efforts in that field (some published in JCP!)
+that are quite similar to this work.
+
+\subsection*{Authors' Response}
+Thank you for this comment; we were unfamiliar with this work.  We have included citations
+where necessary (TODO; I couldn't find the place in the paper he's talking about) along with 
+a brief discussion of existing efforts in GPU acceleration of kinetic networks.  See page 8.
+
+\subsection*{Referee}
+\item  The description of the methdology in section 2 is incomplete, and also appears
+to have a few mistakes/inconsistencies:
+  \begin{enumerate}
+    \item How are $F_{i}^{+}$ and $k_{i}$ evaluated? This should be described in detail, or at
+    minimum there should be a reference to the literature where this is
+    described.
+    \item How does the mass fraction $X_{i}$ relate to the dependent variable $y_{i}$?
+    \item In equation 3, the index $n$ was not introduced—previously the index $i$ was
+    used. Are they equivalent, or does $n$ now correspond to a time step? This
+    should be clarified. Furthermore, assuming $n$ does refer to a time step, I
+    believe the subscripts of $k$ and $F^{+}$  should be $n–1$ rather than $n$, since
+    the authors indicate that the algorithm is explicit.
+  \end{enumerate}
+
+\subsection*{Authors' Response}
+TODO
+
+\subsection*{Referee}
+\item  In section 5, the list of GPU issues should explicitly mention thread divergence
+as one issue. I believe this is alluded to in the second point about highly parallel
+code, but should be clearly mentioned.
+
+\subsection*{Authors' Response}
+Thanks for this comment; we have expanded this section and now mention thread divergence explicitly.
+
+\subsection*{Referee}
+\item One of the other major omissions is any description of how the kinetic network
+is actually parallelized on GPUs. The authors allude to this on page 17, and
+mention briefly using tree methods to calculate the sum of fluxes, but there is
+not a clear description of how the kinetic networks are actually parallelized—
+which, considering that this is the major new contribution of this work, needs to
+be rectified.
+
+\subsection*{Authors' Response}
+We have added additional explicit details concerning the GPU implementation to our
+discussion of the algorithm.  Please see see the expanded section 7.
+
+\subsection*{Referee}
+\item I believe that the conclusions section does not adequately describe some of
+the results shown in the paper. In particular, the results shown in Figures 6 and
+8, in terms of performance improvement, should be accurately summarized
+rather than the overly general statement of ``orders of magnitude decreases in
+the runtimes''.
+
+\subsection*{Authors' Response}
+We have re-worded the conclusions to more specifically re-state the findings discussed in sections 9, 10, and 11.
+
+\subsection*{Referee}
+\item A final minor comment regarding the authors' statement on page 14 regarding operator splitting: ``... freeing almost all CPU cycles for implementing the fluid
+dynamics''. As depicted in Figures 2 and 3 (and in the appropriate references),
+operator splitting techniques are in general serial operations—the fluid and
+kinetic terms must be solved in a particular order, and thus cannot be handled
+simultaneously.
+
+\subsection*{Authors' Response}
+TODO
+
+\end{enumerate}
+
+\section*{Referee 2}
+\begin{enumerate}
+\subsection*{Referee}
+\item There already seems to be some literature on the usage of GPUs in solving kinetic equations. I suggest the authors comment on this in the paper. Comparisons in performance and or inner workings between different GPU algorithms would be great. Examples of GPU based kinetic solvers: 
+
+Accelerating moderately stiff chemical kinetics in reactive-flow simulations using GPUs (2014), KE Niemeyer, CJ Sung, J. Comp. Phys., 256 654-871
+
+GPU-based flow simulation with detailed chemical kinetics(2013), HP Le, JL Cambier, LK Cole, CPC, 148-3 596-606
+
+\subsection*{Authors' Response}
+Thank you for this comment; we were unfamiliar with this work.  We have included citations
+where necessary (TODO; I couldn't find the place in the paper he's talking about) along with
+a brief discussion of existing efforts in GPU acceleration of kinetic networks.  See page 8.
+
+\subsection*{Referee}
+\item The paper provides very little detail about the workings of the algorithm. For example, the paper discusses that it uses the shared memory, but does not say what is stored or how it scales with problem size. 
+
+\subsection*{Authors' Response}
+We have added additional explicit details concerning the GPU implementation to our
+discussion of the algorithm.  Please see see the expanded section 7.
+
+\subsection*{Referee}
+\item Since the GPU speeds up only the network time steps, I suggest a (realistic) benchmark how this improves the wall clock time of the overall simulation. 
+
+\subsection*{Authors' Response}
+Unfortunately, this is not possible to do without actually coupling the kinetic integration to hydrodynamics, which we plan to do in future work.  TODO? discuss implications for overall wall clock time in paper?
+
+\subsection*{Referee}
+\item On page 7, the authors discuss "four issues". Issues 2 and 4 seem the same (are very similar) to me. I suggest the authors make the difference more clear.
+
+\subsection*{Authors' Response}
+Thanks for this comment; we have expanded this section to make the difference between these two issues more clear.
+
+\subsection*{Referee}
+\item Page 10, I don't know where the authors get $10^{11}$ bytes/s from, because according to specifications, PCI-Express 3.0 x16 bus has 16 GB/s duplex data link.
+
+\subsection*{Authors' Response}
+Thank you for identifying this error.  Note our correction on page 10.
+
+\subsection*{Referee}
+\item From figure 5 it is hard to tell, how well single precision (GPU) does compared to double precision (CPU). I suggest instead to show the relative error in a plot instead. It would be interesting to see whether single precision on the GPU is (roughly) equal to single precision on the CPU also.
+
+\subsection*{Authors' Response}
+TODO
+
+\subsection*{Referee}
+\item Page 12, a "3 GHZ (Intel) processor" should be substituted for the actual type number/architecture to have an idea how the CPU and GPU benchmarks compare. On the same note, why not put the CPU benchmarks in the table as well?
+
+\subsection*{Authors' Response}
+We have updated this to include the specific CPU model (TODO: verify; I think I got the spec for the same Dell Precision as Guidry's machine, but I'm not positive.).
+
+\subsection*{Referee}
+\item Throughout the paper comparisons are made between the CPU implicit and GPU explicit algorithm. I understand this gives more impressive speedup factors, but I found it confusing at best. 
+
+\subsection*{Authors' Response}
+We feel it is justifiable to make this comparison not only because it is the prevailing comparison made in the literature (see the recently-added references from combustion chemistry) but also because it is the state-of-the-art for the integration of kinetic networks in astrophysical simulations.  TODO? Add blurb to paper explaining comparison.
+
+\end{enumerate}
+\end{document}

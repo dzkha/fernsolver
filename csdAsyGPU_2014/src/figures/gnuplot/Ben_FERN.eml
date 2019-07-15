@@ -1,0 +1,982 @@
+Delivered-To: guidrymw@gmail.com
+Received: by 10.52.11.39 with SMTP id n7csp27883vdb;
+        Fri, 16 May 2014 01:07:28 -0700 (PDT)
+X-Received: by 10.224.62.17 with SMTP id v17mr20623168qah.6.1400227648191;
+        Fri, 16 May 2014 01:07:28 -0700 (PDT)
+Return-Path: <brock@utk.edu>
+Received: from na01-bn1-obe.outbound.protection.outlook.com (mail-bn1blp0181.outbound.protection.outlook.com. [207.46.163.181])
+        by mx.google.com with ESMTPS id 67si3792493qgl.141.2014.05.16.01.07.27
+        for <multiple recipients>
+        (version=TLSv1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Fri, 16 May 2014 01:07:28 -0700 (PDT)
+Received-SPF: none (google.com: brock@utk.edu does not designate permitted sender hosts) client-ip=207.46.163.181;
+Authentication-Results: mx.google.com;
+       spf=neutral (google.com: brock@utk.edu does not designate permitted sender hosts) smtp.mail=brock@utk.edu
+Received: from AMSPRD0310HT002.eurprd03.prod.outlook.com (157.56.248.5) by
+ BLUPR02MB033.namprd02.prod.outlook.com (10.242.191.13) with Microsoft SMTP
+ Server (TLS) id 15.0.944.11; Fri, 16 May 2014 08:07:26 +0000
+Message-ID: <5375C738.8030307@utk.edu>
+Date: Fri, 16 May 2014 09:07:20 +0100
+From: Benjamin Brock <brock@utk.edu>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+MIME-Version: 1.0
+To: Mike Guidry <guidrymw@gmail.com>
+CC: <jayjaybillings@gmail.com>
+Subject: Re: FERN
+References: <537543EB.8080401@utk.edu> <537562F1.4090905@gmail.com>
+In-Reply-To: <537562F1.4090905@gmail.com>
+Content-Type: multipart/mixed;
+	boundary="------------040904050006090605030301"
+Return-Path: brock@utk.edu
+X-Originating-IP: [157.56.248.5]
+X-ClientProxiedBy: BLUPR02CA017.namprd02.prod.outlook.com (10.141.30.17) To
+ BLUPR02MB033.namprd02.prod.outlook.com (10.242.191.13)
+X-Forefront-PRVS: 02135EB356
+X-Forefront-Antispam-Report:
+ SFV:NSPM;SFS:(428001)(76104003)(51704005)(24454002)(199002)(377454003)(479174003)(189002)(30584003)(87976001)(42186004)(86362001)(71186001)(92726001)(92566001)(21056001)(64126003)(101416001)(79102001)(77982001)(59896001)(46102001)(64706001)(75432001)(512934002)(221733001)(20776003)(81342001)(568964001)(1411001)(33656001)(85852003)(76482001)(36756003)(80022001)(81542001)(65956001)(66066001)(83072002)(65806001)(4396001)(65816999)(19580395003)(74662001)(31966008)(99396002)(83322001)(19580405001)(83506001)(102836001)(87266999)(76176999)(54356999)(16236675002)(84326002)(74502001)(50986999)(579004);DIR:OUT;SFP:;SCL:1;SRVR:BLUPR02MB033;H:AMSPRD0310HT002.eurprd03.prod.outlook.com;FPR:;MLV:sfv;PTR:InfoNoRecords;A:1;MX:1;LANG:en;
+Received-SPF: None (: utk.edu does not designate permitted sender hosts)
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=brock@utk.edu; 
+X-OriginatorOrg: utk.edu
+
+--------------040904050006090605030301
+Content-Type: multipart/alternative;
+	boundary="------------090305090204090808030704"
+
+--------------090305090204090808030704
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Dr. Guidry,
+
+I ran my simple asynchronous example (not FERN, but the sum reduction 
+which performed nearly identically) on a system here in Edinburgh with 
+an Nvidia GeForce GTX 590, which has 16 streaming multiprocessors, and 
+the step size was instead 16.  To me, this pattern suggests very 
+strongly that the step size is based on the number of streaming 
+multiprocessors.  I wouldn't include that GTX benchmark in the paper, 
+though, since I don't think the model has error-correcting memory.  I 
+can run the same trials on Newton, which has a different model Tesla 
+with 16 SM's.  It should also have a step size of 16.
+
+I should probably also re-run the Titan benchmarks using the -d flag to 
+allow my threads to use more than one core.  The plot shouldn't change 
+much, but it should smooth out the steps a bit, since the CPU should 
+take less time.
+
+Yes, the times are for the standard 150 network trial, which runs in 
+32182 integration steps, and I've attached the data files to this e-mail.
+
+Is there a file with the number of species and reactions in each network 
+somewhere?  I was able to count in the files for the alpha network to 
+find out the number of species and reactions, but I didn't run the 365 
+network for fear of having to count too many reactions.
+
+Jay, I still don't have access to Habilis (I think--what's the hostname? 
+I can try to login), but if it's difficult to register remotely, don't 
+worry about it, since I have other systems like Newton I can test on.
+
+I'll send some pictures as soon as I get a camera.  I ended up at 
+Edinburgh Castle yesterday, but completely by mistake--the roads aren't 
+clearly marked here at all.
+
+Ben
+
+On 05/16/2014 01:59 AM, Mike Guidry wrote:
+> Ben,
+>
+> Outstanding, and I hope you are enjoying Scotland.
+>
+> Do you have the data that you plotted in files that you could send to 
+> me?  I would like to make some plots for presentation in the lectures 
+> I am giving in Shanghai next week.  Also, I assume that the times are 
+> for our standard test run with 32182 integration steps so that I can 
+> convert your plots to seconds per network timestep by dividing by 32182?"
+>
+> The magic number 14 being associated with 14 SMPs on the K20s is 
+> certainly suggestive.  You could perhaps test the idea by running on a 
+> different GPU.  For example, below are the specs for Habilis and 
+> Titan.  Seems Habilis has 15 rather than 14 multiprocessors with 
+> different numbers of CUDA cores per multiprocessor, so the performance 
+> may be different on Habilis relative to Titan for multiple network 
+> launches.
+>
+> Mike
+>
+> ------------------------------------------
+>
+> Habilis:
+>
+> *
+>
+> Device 0: "GeForce GTX 570"
+>
+>  CUDA Driver Version / Runtime Version          5.0 / 4.2
+>
+>  CUDA Capability Major/Minor version number:    2.0
+>
+>  Total amount of global memory:                 1280 MBytes 
+> (1341718528 bytes)
+>
+>  (15) Multiprocessors x ( 32) CUDA Cores/MP:    480 CUDA Cores
+>
+>  GPU Clock rate:                                1464 MHz (1.46 GHz)
+>
+>  Memory Clock rate:                             1900 Mhz
+>
+>  Memory Bus Width:                              320-bit
+>
+>  L2 Cache Size:                                 655360 bytes
+>
+>  Max Texture Dimension Size (x,y,z)             1D=(65536), 
+> 2D=(65536,65535), 3D=(2048,2048,2048)
+>
+>  Max Layered Texture Size (dim) x layers        1D=(16384) x 2048, 
+> 2D=(16384,16384) x 2048
+>
+>  Total amount of constant memory:               65536 bytes
+>
+>  Total amount of shared memory per block:       49152 bytes
+>
+>  Total number of registers available per block: 32768
+>
+>  Warp size:                                     32
+>
+>  Maximum number of threads per multiprocessor:  1536
+>
+>  Maximum number of threads per block:           1024
+>
+>  Maximum sizes of each dimension of a block:    1024 x 1024 x 64
+>
+>  Maximum sizes of each dimension of a grid:     65535 x 65535 x 65535
+>
+>  Maximum memory pitch:                          2147483647 bytes
+>
+>  Texture alignment:                             512 bytes
+>
+>  Concurrent copy and execution:                 Yes with 1 copy engine(s)
+>
+>  Run time limit on kernels:                     Yes
+>
+>  Integrated GPU sharing Host Memory:            No
+>
+>  Support host page-locked memory mapping:       Yes
+>
+>  Concurrent kernel execution:                   Yes
+>
+>  Alignment requirement for Surfaces:            Yes
+>
+>  Device has ECC support enabled:                No
+>
+>  Device is using TCC driver mode:               No
+>
+>  Device supports Unified Addressing (UVA):      Yes
+>
+>  Device PCI Bus ID / PCI location ID:           3 / 0
+>
+>  Compute Mode:
+>
+>     < Default (multiple host threads can use ::cudaSetDevice() with 
+> device simultaneously) >
+>
+>
+>
+> *Titan:
+> **
+> *
+>
+> Device 0: "GeForce GTX TITAN"
+>
+> CUDA Driver Version / Runtime Version 5.0 / 5.0
+>
+> CUDA Capability Major/Minor version number: 3.5
+>
+> Total amount of global memory: 6144 MBytes (6442123264 bytes)
+>
+> (14) Multiprocessors x (192) CUDA Cores/MP: 2688 CUDA Cores
+>
+> GPU Clock rate: 876 MHz (0.88 GHz)
+>
+> Memory Clock rate: 3004 Mhz
+>
+> Memory Bus Width: 384-bit
+>
+> L2 Cache Size: 1572864 bytes
+>
+> Max Texture Dimension Size (x,y,z) 1D=(65536), 2D=(65536,65536), 
+> 3D=(4096,4096,4096)
+>
+> Max Layered Texture Size (dim) x layers 1D=(16384) x 2048, 
+> 2D=(16384,16384) x 2048
+>
+> Total amount of constant memory: 65536 bytes
+>
+> Total amount of shared memory per block: 49152 bytes
+>
+> Total number of registers available per block: 65536
+>
+> Warp size: 32
+>
+> Maximum number of threads per multiprocessor: 2048
+>
+> Maximum number of threads per block: 1024
+>
+> Maximum sizes of each dimension of a block: 1024 x 1024 x 64
+>
+> Maximum sizes of each dimension of a grid: 2147483647 x 65535 x 65535
+>
+> Maximum memory pitch: 2147483647 bytes
+>
+> Texture alignment: 512 bytes
+>
+> Concurrent copy and kernel execution: Yes with 1 copy engine(s)
+>
+> Run time limit on kernels: Yes
+>
+> Integrated GPU sharing Host Memory: No
+>
+> Support host page-locked memory mapping: Yes
+>
+> Alignment requirement for Surfaces: Yes
+>
+> Device has ECC support: Disabled
+>
+> CUDA Device Driver Mode (TCC or WDDM): WDDM (Windows Display Driver Model)
+>
+> Device supports Unified Addressing (UVA): Yes
+>
+> Device PCI Bus ID / PCI location ID: 3 / 0
+>
+> Compute Mode:
+>
+> < Default (multiple host threads can use ::cudaSetDevice() with device 
+> simultaneously) >
+>
+> *
+>
+>
+>
+> On 05/15/2014 06:47 PM, Benjamin Brock wrote:
+>> Dr. Guidry,
+>>
+>> Sorry it's take me so long to get back; I've been settling in at 
+>> Edinburgh.
+>>
+>> I've attached two plots of timings for simultaneous kernel launches 
+>> of the 150 network, one plot with timings from about 1 to 35 
+>> simultaneous kernel launches, and one plot with timings from about 1 
+>> to 84 simultaneous launches.  As you can see, the trend of 14 kernels 
+>> launches as a step function continues past 28 kernels.  The step size 
+>> of fourteen makes sense here, since the K20X has 14 streaming 
+>> multiprocessors.  There is a slight upward trend in each step, which 
+>> I believe we can attribute to overhead on the CPU.
+>>
+>> I also ran a trial with the alpha network.  The alpha network has 
+>> only 16 isotopes with 48 reactions, so one kernel launch takes 
+>> something like 0.026 s to run on a K20X.  Since the kernel launch is 
+>> so quick, the greatest computational hurdle involved in solving the 
+>> alpha network is the bookkeeping associated with launching a kernel, 
+>> which is why we see a linear plot for the alpha network (also 
+>> attached).  It's the same slight upward trend we saw within steps for 
+>> the 150 network (at least I think so), but here it dominates the plot.
+>>
+>> Let me know what you think.
+>>
+>> Ben
+>
+>
+> -- 
+> ------------------------------------------------------------------------
+> MIKE GUIDRY:guidry@utk.edu  
+> Dept. Physics & Astronomy, Univ. of Tennessee, Knoxville, TN 37996-1200
+> 865-974-7810 (office) | 865-974-3342 (secretary) | 865-974-7843 (Fax)
+>                    +  +  +  +  +  +  +  +  +
+> Theoretical Astrophysics, Room 15-W-5 Building 6025
+> Oak Ridge National Laboratory, Oak Ridge, TN 37831-6354
+> 865-576-6353 (office) | 865-574-4576 (secretary) | 865-574-4745 (Fax)
+> ------------------------------------------------------------------------
+
+
+--------------090305090204090808030704
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    Dr. Guidry,<br>
+    <br>
+    I ran my simple asynchronous example (not FERN, but the sum
+    reduction which performed nearly identically) on a system here in
+    Edinburgh with an Nvidia GeForce GTX 590, which has 16 streaming
+    multiprocessors, and the step size was instead 16.&nbsp; To me, this
+    pattern suggests very strongly that the step size is based on the
+    number of streaming multiprocessors.&nbsp; I wouldn't include that GTX
+    benchmark in the paper, though, since I don't think the model has
+    error-correcting memory.&nbsp; I can run the same trials on Newton, which
+    has a different model Tesla with 16 SM's.&nbsp; It should also have a
+    step size of 16.<br>
+    <br>
+    I should probably also re-run the Titan benchmarks using the -d flag
+    to allow my threads to use more than one core.&nbsp; The plot shouldn't
+    change much, but it should smooth out the steps a bit, since the CPU
+    should take less time.<br>
+    <br>
+    Yes, the times are for the standard 150 network trial, which runs in
+    32182 integration steps, and I've attached the data files to this
+    e-mail.<br>
+    <br>
+    Is there a file with the number of species and reactions in each
+    network somewhere?&nbsp; I was able to count in the files for the alpha
+    network to find out the number of species and reactions, but I
+    didn't run the 365 network for fear of having to count too many
+    reactions.<br>
+    <br>
+    Jay, I still don't have access to Habilis (I think--what's the
+    hostname? I can try to login), but if it's difficult to register
+    remotely, don't worry about it, since I have other systems like
+    Newton I can test on.<br>
+    <br>
+    I'll send some pictures as soon as I get a camera.&nbsp; I ended up at
+    Edinburgh Castle yesterday, but completely by mistake--the roads
+    aren't clearly marked here at all.<br>
+    <br>
+    Ben<br>
+    <br>
+    <div class="moz-cite-prefix">On 05/16/2014 01:59 AM, Mike Guidry
+      wrote:<br>
+    </div>
+    <blockquote cite="mid:537562F1.4090905@gmail.com" type="cite">
+      <meta content="text/html; charset=ISO-8859-1"
+        http-equiv="Content-Type">
+      <div class="moz-cite-prefix">Ben,<br>
+        <br>
+        Outstanding, and I hope you are enjoying Scotland.<br>
+        <br>
+        Do you have the data that you plotted in files that you could
+        send to me?&nbsp; I would like to make some plots for presentation in
+        the lectures I am giving in Shanghai next week.&nbsp; Also, I assume
+        that the times are for our standard test run with 32182
+        integration steps so that I can convert your plots to seconds
+        per network timestep by dividing by 32182?"<br>
+        <br>
+        The magic number 14 being associated with 14 SMPs on the K20s is
+        certainly suggestive.&nbsp; You could perhaps test the idea by
+        running on a different GPU.&nbsp; For example, below are the specs
+        for Habilis and Titan.&nbsp; Seems Habilis has 15 rather than 14
+        multiprocessors with different numbers of CUDA cores per
+        multiprocessor, so the performance may be different on Habilis
+        relative to Titan for multiple network launches.<br>
+        <br>
+        Mike<br>
+        <br>
+        ------------------------------------------<br>
+        <br>
+        Habilis:<br>
+        <br>
+        <meta http-equiv="content-type" content="text/html;
+          charset=ISO-8859-1">
+        <b style="font-weight:normal;"
+          id="docs-internal-guid-7c31f0cb-0280-1c89-e9a4-3528887d4d8f">
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Device
+
+              0: "GeForce GTX 570"</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;CUDA Driver Version / Runtime Version &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.0 / 4.2</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;CUDA Capability Major/Minor version number: &nbsp;&nbsp;&nbsp;2.0</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Total amount of global memory: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1280
+              MBytes (1341718528 bytes)</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;(15) Multiprocessors x ( 32) CUDA Cores/MP: &nbsp;&nbsp;&nbsp;480 CUDA
+              Cores</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;GPU Clock rate: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1464 MHz
+              (1.46 GHz)</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Memory Clock rate: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1900 Mhz</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Memory Bus Width: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;320-bit</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;L2 Cache Size: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;655360
+              bytes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Max Texture Dimension Size (x,y,z)
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1D=(65536), 2D=(65536,65535),
+              3D=(2048,2048,2048)</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Max Layered Texture Size (dim) x layers &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1D=(16384)
+              x 2048, 2D=(16384,16384) x 2048</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Total amount of constant memory: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;65536
+              bytes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Total amount of shared memory per block: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;49152
+              bytes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Total number of registers available per block: 32768</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Warp size: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;32</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Maximum number of threads per multiprocessor: &nbsp;1536</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Maximum number of threads per block: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1024</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Maximum sizes of each dimension of a block: &nbsp;&nbsp;&nbsp;1024 x
+              1024 x 64</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Maximum sizes of each dimension of a grid: &nbsp;&nbsp;&nbsp;&nbsp;65535 x
+              65535 x 65535</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Maximum memory pitch: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2147483647
+              bytes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Texture alignment: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;512 bytes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Concurrent copy and execution: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes with 1
+              copy engine(s)</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Run time limit on kernels: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Integrated GPU sharing Host Memory: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Support host page-locked memory mapping: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Concurrent kernel execution: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Alignment requirement for Surfaces: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Device has ECC support enabled: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Device is using TCC driver mode: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Device supports Unified Addressing (UVA): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Device PCI Bus ID / PCI location ID: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 / 0</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+              &nbsp;Compute Mode:</span></p>
+          <span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:transparent;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt; Default (multiple host threads can use
+            ::cudaSetDevice() with device simultaneously) &gt;<br>
+            <br>
+            <br>
+            <br>
+            <b><big><big>Titan:</big></big><br>
+            </b></span></b><br>
+        <meta http-equiv="content-type" content="text/html;
+          charset=ISO-8859-1">
+        <b style="font-weight:normal;"
+          id="docs-internal-guid-7c31f0cb-0281-6297-ebf8-f9d2ec285ca4">
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Device
+
+              0: "GeForce GTX TITAN"</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">CUDA
+
+              Driver Version / Runtime Version 5.0 / 5.0</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">CUDA
+
+              Capability Major/Minor version number: 3.5</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Total
+
+              amount of global memory: 6144 MBytes (6442123264 bytes)</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">(14)
+
+              Multiprocessors x (192) CUDA Cores/MP: 2688 CUDA Cores</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">GPU
+
+              Clock rate: 876 MHz (0.88 GHz)</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Memory
+
+              Clock rate: 3004 Mhz</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Memory
+
+              Bus Width: 384-bit</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">L2
+
+              Cache Size: 1572864 bytes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Max
+
+              Texture Dimension Size (x,y,z) 1D=(65536),
+              2D=(65536,65536), 3D=(4096,4096,4096)</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Max
+
+              Layered Texture Size (dim) x layers 1D=(16384) x 2048,
+              2D=(16384,16384) x 2048</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Total
+
+              amount of constant memory: 65536 bytes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Total
+
+              amount of shared memory per block: 49152 bytes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Total
+
+              number of registers available per block: 65536</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Warp
+
+              size: 32</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Maximum
+
+              number of threads per multiprocessor: 2048</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Maximum
+
+              number of threads per block: 1024</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Maximum
+
+              sizes of each dimension of a block: 1024 x 1024 x 64</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Maximum
+
+              sizes of each dimension of a grid: 2147483647 x 65535 x
+              65535</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Maximum
+
+              memory pitch: 2147483647 bytes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Texture
+
+              alignment: 512 bytes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Concurrent
+
+              copy and kernel execution: Yes with 1 copy engine(s)</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Run
+
+              time limit on kernels: Yes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Integrated
+
+              GPU sharing Host Memory: No</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Support
+
+              host page-locked memory mapping: Yes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Alignment
+
+              requirement for Surfaces: Yes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Device
+
+              has ECC support: Disabled</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">CUDA
+
+              Device Driver Mode (TCC or WDDM): WDDM (Windows Display
+              Driver Model)</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Device
+
+              supports Unified Addressing (UVA): Yes</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Device
+
+              PCI Bus ID / PCI location ID: 3 / 0</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Compute
+
+              Mode:</span></p>
+          <p dir="ltr"
+            style="line-height:1.15;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13px;font-family:Arial;color:#1c4587;background-color:#ffffff;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">&lt;
+
+              Default (multiple host threads can use ::cudaSetDevice()
+              with device simultaneously) &gt;</span></p>
+        </b><br class="Apple-interchange-newline">
+        <meta charset="utf-8">
+        <meta charset="utf-8">
+        <br>
+        <br>
+        <br>
+        On 05/15/2014 06:47 PM, Benjamin Brock wrote:<br>
+      </div>
+      <blockquote cite="mid:537543EB.8080401@utk.edu" type="cite">Dr.
+        Guidry, <br>
+        <br>
+        Sorry it's take me so long to get back; I've been settling in at
+        Edinburgh. <br>
+        <br>
+        I've attached two plots of timings for simultaneous kernel
+        launches of the 150 network, one plot with timings from about 1
+        to 35 simultaneous kernel launches, and one plot with timings
+        from about 1 to 84 simultaneous launches.&nbsp; As you can see, the
+        trend of 14 kernels launches as a step function continues past
+        28 kernels.&nbsp; The step size of fourteen makes sense here, since
+        the K20X has 14 streaming multiprocessors.&nbsp; There is a slight
+        upward trend in each step, which I believe we can attribute to
+        overhead on the CPU. <br>
+        <br>
+        I also ran a trial with the alpha network.&nbsp; The alpha network
+        has only 16 isotopes with 48 reactions, so one kernel launch
+        takes something like 0.026 s to run on a K20X.&nbsp; Since the kernel
+        launch is so quick, the greatest computational hurdle involved
+        in solving the alpha network is the bookkeeping associated with
+        launching a kernel, which is why we see a linear plot for the
+        alpha network (also attached).&nbsp; It's the same slight upward
+        trend we saw within steps for the 150 network (at least I think
+        so), but here it dominates the plot. <br>
+        <br>
+        Let me know what you think. <br>
+        <br>
+        Ben <br>
+      </blockquote>
+      <br>
+      <br>
+      <pre class="moz-signature" cols="72">-- 
+------------------------------------------------------------------------
+MIKE GUIDRY:  <a moz-do-not-send="true" class="moz-txt-link-abbreviated" href="mailto:guidry@utk.edu">guidry@utk.edu</a> 
+Dept. Physics &amp; Astronomy, Univ. of Tennessee, Knoxville, TN 37996-1200
+865-974-7810 (office) | 865-974-3342 (secretary) | 865-974-7843 (Fax)
+                  +  +  +  +  +  +  +  +  +
+Theoretical Astrophysics, Room 15-W-5 Building 6025
+Oak Ridge National Laboratory, Oak Ridge, TN 37831-6354
+865-576-6353 (office) | 865-574-4576 (secretary) | 865-574-4745 (Fax)
+------------------------------------------------------------------------
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------090305090204090808030704--
+
+--------------040904050006090605030301
+Content-Type: application/x-ns-proxy-autoconfig; name="async_150.dat"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="async_150.dat"
+
+1    5.932948
+2    5.996914
+3    6.071067
+4    6.113324
+5    6.083791
+6    6.158156
+7    6.202822
+8    6.276037
+9    6.276261
+10    6.366102
+11    6.391272
+12    6.369292
+13    6.543782
+14    6.638702
+15    12.067225
+16    12.299214
+17    12.284373
+18    12.325753
+19    12.380146
+20    12.553583
+21    12.405896
+22    12.401850
+23    12.515616
+24    12.507083
+25    12.578345
+26    12.657534
+27    12.678826
+28    12.758233
+29    18.085527
+30    18.463061
+31    18.585102
+32    18.616203
+33    18.626203
+34    18.574152
+
+--------------040904050006090605030301
+Content-Type: application/x-ns-proxy-autoconfig; name="async_150_full.dat"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="async_150_full.dat"
+
+1    5.932948
+2    5.996914
+3    6.071067
+4    6.113324
+5    6.083791
+6    6.158156
+7    6.202822
+8    6.276037
+9    6.276261
+10    6.366102
+11    6.391272
+12    6.369292
+13    6.543782
+14    6.638702
+15    12.067225
+16    12.299214
+17    12.284373
+18    12.325753
+19    12.380146
+20    12.553583
+21    12.405896
+22    12.401850
+23    12.515616
+24    12.507083
+25    12.578345
+26    12.657534
+27    12.678826
+28    12.758233
+29    18.085527
+30    18.463061
+31    18.585102
+32    18.616203
+33    18.626203
+34    18.574152
+35    18.665822
+36    18.667662
+37    18.674924
+38    18.757783
+39    18.845252
+40    18.953211
+41    18.998143
+42    19.055324
+43    24.098232
+44    24.702236
+45    24.698029
+46    24.732111
+47    24.762346
+48    24.852799
+49    24.927434
+50    24.906582
+51    24.925051
+52    24.962498
+53    25.141871
+54    25.178271
+55    25.275436
+56    25.342955
+57    30.775742
+58    30.753504
+59    30.949488
+60    31.016965
+61    30.967254
+62    31.038613
+63    31.092268
+64    31.107135
+65    31.248119
+66    31.320990
+67    31.437861
+68    31.500078
+69    31.626336
+70    31.727408
+71    36.821207
+72    37.091242
+73    37.089965
+74    37.163219
+75    37.277570
+76    37.318969
+77    37.329883
+78    37.411520
+79    37.490387
+80    37.631359
+81    37.721625
+82    37.885301
+83    37.944551
+84    38.064234
+
+--------------040904050006090605030301
+Content-Type: application/x-ns-proxy-autoconfig; name="async_alpha.dat"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="async_alpha.dat"
+
+1    0.025544
+2    0.037871
+3    0.051219
+4    0.065151
+5    0.078464
+6    0.091730
+7    0.105816
+8    0.119347
+9    0.133737
+10    0.148554
+11    0.163551
+12    0.178533
+13    0.191271
+14    0.207871
+15    0.213110
+16    0.238063
+17    0.251612
+18    0.265931
+19    0.282338
+20    0.292173
+21    0.312298
+22    0.326989
+23    0.342838
+24    0.363969
+25    0.367777
+26    0.392535
+27    0.494966
+28    0.418755
+29    0.433841
+30    0.448332
+31    0.466049
+32    0.476958
+33    0.494545
+34    0.511270
+35    0.528467
+36    0.543073
+37    0.556180
+38    0.585048
+39    0.589699
+40    0.585372
+41    0.620908
+42    0.632797
+43    0.653615
+44    0.667105
+45    0.697287
+46    0.700938
+47    0.715143
+48    0.706740
+49    0.743480
+50    0.760752
+51    0.781384
+52    0.796311
+53    0.810703
+54    0.823781
+55    0.830679
+56    0.855244
+57    0.869296
+58    0.887630
+59    0.919972
+60    0.920574
+61    0.930379
+62    0.945961
+63    0.976094
+64    0.989857
+65    1.002647
+66    1.030129
+67    1.037245
+68    1.050874
+69    1.065349
+70    1.065376
+71    1.080130
+72    1.098739
+73    1.131032
+74    1.127059
+75    1.142270
+76    1.165693
+77    1.175314
+78    1.179953
+79    1.201871
+80    1.242615
+81    1.233255
+82    1.251506
+83    1.267533
+84    1.283142
+
+--------------040904050006090605030301--

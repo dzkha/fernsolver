@@ -1,0 +1,129 @@
+
+T9
+Y
+rho
+	Prefac
+dt
+
+Length
+=====
+
+S = species
+R = reactions
+F = totalFsign
+t = timesteps
+
+Target Network
+==============
+
+numberSpecies: 150
+numberReactions: 1604
+totalFplus: 2710
+totalFminus: 2704
+
+
+sign = {plus,minus}
+<n> = ceiling(n / threads)
+
+Variables
+=========
+
+massNum [S]		-
+	2 <S>
+	2 t <S>
+	
+Z [S]
+	1
+
+N [S]
+	1
+
+Y [S]			-
+	1
+	4 t <S>
+	t <R>
+
+X [S]			-
+	1
+	2 log S
+	2 t <S>
+	2 t log S
+
+Rate [S]		-
+	1
+	t <R>
+
+Yzero [S]		-
+	t <S>
+	t <S>
+
+NumReactingSpecies [R]
+	t <R>
+
+Flux [R]		-
+	t <R>
+
+Reactant[0] [R]
+	t <R>
+
+Fsign [R]		-
+	t <F>
+	t <F> (FsignMax[i] - minny)
+
+FsignFac [R]
+	t <F>
+
+FsignMax [R]
+
+FsignSum [F]		-
+	t <F>
+	t <F> (FsignMax[i] - minny)
+	3 t <S>
+
+Fdiff [S]		-
+	t <S>
+	t 3 log S
+
+maxFlux			-
+	t
+
+dt			-
+	3 t <S>
+	2 t
+
+
+
+Functions
+=========
+
+populateF
+	Fsign
+		<F>
+	
+	FsignFac
+		<F>
+	
+	Flux
+		<F>
+	
+	MapFsign
+		<F>
+
+updatePopulations
+	FminusSum
+		<S>
+		<S>
+	
+	FplusSum
+		<S>
+	
+	Yzero
+		<S>
+	
+	dt
+		<S>
+
+reduce{Sum,Max}(n, a)
+	a
+		3 log n
+

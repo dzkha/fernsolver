@@ -1,0 +1,48 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\title{csdAsyGPU Response}
+
+\begin{document}
+\maketitle
+\section*{Referee 1}
+\subsection*{Referee}
+I did notice a few minor issues in some new content that need corrections (more typographic than content):
+\begin{enumerate}
+  \item reference 11 is no longer in press
+  \item references 9, 10, and 12 have some garbage characters (at least on my computer)
+\end{enumerate}
+
+\subsection*{Authors' Response}
+We have updated the citation for reference 11.  We don't see any garbage characters in references 9, 10, or 12 when we view it with a few different editors.  Hopefully, the copy editor can clean this up if there's an issue.
+
+\section*{Referee 2}
+\begin{enumerate}
+\item  The authors commented on my suggestion to put CPU benchmarks in Table 1, by saying they felt it was not very relevant. However, I disagree. As far as I understand, the main selling point of the paper is the improvement of the GPU algorithm compared to the CPU (either implicit and/or explicit) algorithm. Of course, this paper is not the place for extensive CPU benchmarks, but one or two entries in the table dedicated to the performance on a CPU shouldn't detract the paper from its goal.
+
+\item  The additional paragraph describing the algorithm is informative, but I still feel some details are missing. I would like the authors to expand on this in the paper a little more. For example:
+\begin{enumerate}
+	\item What kind of sum reduction algorithm is used?
+	\item Do all values fit in the shared memory, regardless of problem size?
+	\item How is the work distributed among threads? Are isotopes with $>$32 values reduced sequentially, or in parallel? Are isotopes with $<$32 values done during this?
+\end{enumerate}
+\end{enumerate}
+
+\subsection*{Authors' Response}
+\begin{enumerate}
+  \item We have added CPU benchmarks to table 1.
+  \item
+  \begin{enumerate}
+    \item The parallel sum reduction algorithm we use is a simple tree reduction algorithm; each thread is given two values to sum until the summation is finished.  Because we only use one SM, we don't have to deal with any of the complex memory and synchronization topics discussed in the Nvidia document you attached.  We have tried to make it more clear in this revision of the paper that the algorithm we use is just a simple tree reduction algorithm.  (See our discussion on page 10)
+    \item For each of the networks we test, the $F^{+}$ and $F^{-}$ arrays we reduce fit in shared memory.  We now mention this in our discussion on page 10.
+    \item We've expanded the section on page 10 to try to make this more clear.  Isotopes with $>$32 values are reduced one at a time using a parallel tree sum reduction algorithm.  After all of those finish, The isotopes with $\leq$32 values are then computed.  All of the sum reductions happen in parallel, with each thread reducing a single isotope's values serially.
+  \end{enumerate}
+\end{enumerate}
+
+\end{document}

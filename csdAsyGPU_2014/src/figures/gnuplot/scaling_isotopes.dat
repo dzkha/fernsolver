@@ -1,0 +1,7 @@
+# Scaling with network size for one network
+# 
+# Isotopes | Time for one step | ln N | Scaled ln N
+14  5.04e-5 2.64 2.64e-5
+70 1.2e-4  4.25  4.25e-5
+150 1.8e-4  5.01  5.01e-5
+365 3.3e-4  5.89  5.89e-5

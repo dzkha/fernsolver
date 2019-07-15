@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Wed Sep 10 12:01:35 EDT 2014
+markTmpDer=true
+builderNum=6
+outputDir=bin/
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=asyGPU.tex
+outputFile=csd_asyGPU.pdf
+langSpell=en
+markDer=true
+srcDir=src/
